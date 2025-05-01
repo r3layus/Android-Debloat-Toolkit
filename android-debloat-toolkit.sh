@@ -320,12 +320,12 @@ apkExport() {
   fi
 
   # Creates file or clears file contents
-  > $output_file
+  > "$output_file" 
 
-  echo "Exporting $model_name's APK list to: $output_file"
+  echo "Exporting $model_name's APK list to: "$output_file" "
 
   # Start JSON format
-  echo "[" >> $output_file
+  echo "[" >> "$output_file"
 
   for ((i = 0; i < package_count; i++)); do
     package=${packages[$i]}
@@ -349,21 +349,21 @@ apkExport() {
       # Create description
       package_description="Version: $package_version, Directory: $package_dir"
 
-      echo "  {" >> $output_file
-      echo "    \"id\": \"$package_name\"," >> $output_file
-      echo "    \"list\": \"unknown\"," >> $output_file
-      echo "    \"description\": \"$package_description\"," >> $output_file
-      echo "    \"status\": \"$package_status\"," >> $output_file
-      echo "    \"removal\": \"unknown\"" >> $output_file
-      echo "  }," >> $output_file
+      echo "  {" >> "$output_file"
+      echo "    \"id\": \"$package_name\"," >> "$output_file"
+      echo "    \"list\": \"unknown\"," >> "$output_file"
+      echo "    \"description\": \"$package_description\"," >> "$output_file"
+      echo "    \"status\": \"$package_status\"," >> "$output_file"
+      echo "    \"removal\": \"unknown\"" >> "$output_file"
+      echo "  }," >> "$output_file"
     fi
   done
 
   # End JSON format
-  echo "]" >> $output_file
+  echo "]" >> "$output_file"
 
   # Remove last comma
-  sed -i '$!N;$s/},/}/' $output_file
+  sed -i '$!N;$s/},/}/' "$output_file" 
 
   echo ""
   read -p "Export complete, return to (M)ain Menu or (E)xit? (M/E): " response
